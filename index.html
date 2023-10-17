@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barre latérale avec onglets</title>
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    />
+    <style>
+        .rectangles-container {
+            display: flex;
+            position: absolute;
+            left: 200px; /* same as the width of your sidebar */
+            top: 50px;
+            padding: 10px;
+            flex-direction: column;
+            font-family: "Press Start 2P", cursive;
+            font-size: 170px;
+        }
+        .btn-connexion {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 30px 30px;
+            font-size: 16px;
+            border: none;
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+            border-radius: 20px;
+            font-family: "Press Start 2P", cursive;
+        }
+        .btn-connexion:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- Le reste du contenu de votre site va ici -->
+    <div class="rectangles-container">
+        <p>SALUT LES NODALS</p>
+        <!-- Le reste du contenu de votre site va ici -->
+    </div>
+    <button class="btn-connexion" onclick="window.location.href='statistiques.html'">Connexion</button>
+</body>
+</html>

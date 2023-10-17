@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barre latérale avec onglets</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    />
+    <style>
+      .sidebar {
+        width: 350px;
+        height: 100vh;
+        background-color: blue;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        font-family: "Press Start 2P", cursive;
+      }
+      .sidebar div {
+        margin-bottom: 400px;
+      }
+      .sidebar a {
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+        margin-bottom: 5px;
+        transition: background-color 0.2s;
+        border-radius: 10px;
+      }
+
+      .sidebar a:hover {
+        background-color: darkblue;
+      }
+
+      .btn-deconnexion {
+        display: block;
+        padding: 10px;
+        background-color: red;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.2s;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-family: "Press Start 2P", cursive;
+      }
+
+      .btn-deconnexion:hover {
+        background-color: darkred;
+      }
+
+      .rectangles-container {
+        display: flex;
+        position: absolute;
+        left: 350px; /* same as the width of your sidebar */
+        top: 0;
+        padding: 10px;
+        flex-direction: column;
+      }
+
+      .row {
+        display: flex;
+        margin-bottom: 10px; /* spacing between rows */
+      }
+
+      .row:last-child {
+        margin-bottom: 0; /* remove margin from the last row */
+      }
+
+      .rectangle {
+        width: 350px; /* or whatever width you want */
+        height: 980px; /* or whatever height you want */
+        background-color: rgb(229, 229, 229);
+        border-radius: 30px;
+        margin-left: 15px;
+        margin-top: 15px;
+      }
+      .row .rectangle:last-child {
+        margin-right: 0; /* remove margin from the last rectangle */
+      }
+
+      .rectangles-container .rectangle:last-child {
+        margin-right: 0; /* remove margin from the last rectangle */
+      }
+
+      #filters-form {
+        font-family: "Press Start 2P", cursive;
+        padding: 40px;  /* Add padding to the form */
+        margin-top: 40px;
+    }
+
+    #filters-form label,
+    #filters-form select,
+    #filters-form input {
+        display: block;  /* Make each label, select, and input display on a new line */
+        margin-bottom: 10px;  /* Add margin to space out the elements */
+    }
+
+    #filters-form select,
+    #filters-form input {
+        width: 100%;  /* Make select and input elements take up the full width of the form */
+        padding: 5px;  /* Add some padding for better appearance */
+        border-radius: 5px;  /* Optional: round the corners for a nicer look */
+        border: 1px solid #ccc;  /* Optional: add a border */
+    }
+
+    #filters-form input[type="radio"] {
+        width: auto;  /* Reset the width for radio buttons to auto */
+        margin-right: 5px;  /* Add some margin to the right of radio buttons */
+    }
+
+    .option-label {
+      font-size: 0.8em;  /* Reduce the font size of option labels */
+  }
+
+  .spots-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .spots-list li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+  }
+
+  .spot-info h3,
+  .spot-info p {
+    margin: 0;
+    padding: 0;
+  }
+
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div>
+        <img
+          src="images/nodal.png"
+          alt="Logo Nodal"
+          style="width: 100%; border-radius: 10px; margin-bottom: 150px"
+        />
+        <a href="statistiques.html">STATISTIQUES</a>
+        <a href="spots.html">SPOTS</a>
+        <a href="signalements.html">SIGNALEMENTS</a>
+        <a href="sports.html">SPORTS</a>
+        <a href="centre-aide.html">CENTRE D'AIDE</a>
+        <a href="ajouterdesspots.html">AJOUTER DES SPOTS</a>
+        <a href="utilisateurs.html">UTILISATEURS</a>
+      </div>
+
+      <button class="btn-deconnexion" onclick="window.location.href='index.html'">Déconnexion</button>
+    </div>
+
+    <div class="rectangles-container">
+      <div class="row">
+        <div class="rectangle">
+          <form id="filters-form" style="padding: 10px;">
+          <form id="filters-form" style="padding: 10px">
+            <label for="region">Région :</label>
+            <select id="region" name="region">
+              <option value="">Toutes les régions</option>
+              <!-- ...other options... -->
+            </select>
+            <br />
+
+            <label for="country">Pays :</label>
+            <select id="country" name="country">
+              <option value="">Tous les pays</option>
+              <!-- ...other options... -->
+            </select>
+            <br />
+
+            <label for="acces">Accès:</label><br />
+            <select id="acces" name="acces" required>
+              <option value="gratuit">Gratuit</option>
+              <option value="payant">Payant</option></select
+            ><br />
+
+            <label for="acces">Privacy:</label><br />
+            <select id="acces" name="acces" required>
+              <option value="gratuit">Public</option>
+              <option value="payant">Privée</option></select
+            ><br />
+
+            <label for="acces">Emplacement:</label><br />
+            <select id="acces" name="acces" required>
+              <option value="gratuit">Intérieur</option>
+              <option value="payant">Extèrieur</option></select
+            ><br />
+
+            <label for="sport">Sport :</label>
+            <select id="sport" name="sport">
+              <option value="">Tous les sports</option>
+              <!-- ...other options... -->
+            </select>
+            <br />
+
+            <label for="condition">État du terrain :</label>
+            <select id="condition" name="condition">
+              <option value="">Tous les états</option>
+              <!-- ...other options... -->
+            </select>
+            <br />
+
+            <label for="acces">Status:</label><br />
+            <select id="acces" name="acces" required>
+              <option value="gratuit">Ouvert</option>
+              <option value="payant">Fermé</option></select
+            ><br />
+
+            <label for="acces">Images:</label><br />
+            <select id="acces" name="acces" required>
+              <option value="gratuit">Oui</option>
+              <option value="payant">Non</option></select
+            ><br />
+
+            <label for="acces">Notes minimum:</label><br />
+            <select id="acces" name="acces" required>
+              <option value="gratuit">1</option>
+              <option value="payant">2</option>
+              <option value="payant">3</option>
+              <option value="payant">4</option>
+              <option value="payant">5</option></select
+            ><br />
+
+          </form>
+        </div>
+        <div class="rectangle">
+          <ul class="spots-list">
+            <li>
+              <div class="spot-info">
+                <h3>Sport : Football</h3>
+                <p>Adresse : 123 Rue de la Liberté, 75000 Paris</p>
+              </div>
+            </li>
+            <li>
+              <div class="spot-info">
+                <h3>Sport : Basket-ball</h3>
+                <p>Adresse : 456 Avenue de la République, 75000 Paris</p>
+              </div>
+            </li>
+            <!-- ...autres spots... -->
+          </ul>
+        </div>
+        <div class="rectangle"></div>  <!-- Vous pouvez également ajouter du contenu ici si nécessaire -->
+      </div>
+      </div>
+    </div>
+
+    <div style="margin-left: 260px; padding: 10px">
+      <!-- Le reste du contenu de votre site va ici -->
+    </div>
+  </body>
+</html>

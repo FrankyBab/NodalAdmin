@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<script>
+  var messagesContent = {
+    1: {
+      name: "Expéditeur 1",
+      subject: "Sujet 1",
+      text: "Contenu du message 1",
+    },
+    2: {
+      name: "Expéditeur 2",
+      subject: "Sujet 2",
+      text: "Contenu du message 2",
+    },
+    // ...autres contenus de messages
+  };
+
+  function displayMessage(messageId) {
+    var messageContent = messagesContent[messageId];
+    var htmlContent = `
+      <div class="message-header">
+        <div class="sender-box">
+          <h2>${messageContent.name}</h2>
+        </div>
+        <div class="subject-box">
+          <h3>${messageContent.subject}</h3>
+        </div>
+      </div>
+      <div class="message-body">
+        <div class="text-box">
+          <p>${messageContent.text}</p>
+        </div>
+      </div>
+      <div class="message-footer">
+        <button class="reply-button">Répondre</button>
+      </div>
+    `;
+
+    document.querySelector(".rectanglemessage").innerHTML = htmlContent;
+  }
+
+  function activateTab(tabId) {
+    var tabs = document.querySelectorAll(".sidebar a");
+    tabs.forEach(function (tab) {
+      tab.classList.remove("active-tab");
+    });
+    document.getElementById(tabId).classList.add("active-tab");
+  }
+</script>
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barre latérale avec onglets</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    />
+    <style>
+      .sidebar {
+        width: 350px;
+        height: 100vh;
+        background-color: blue;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        font-family: "Press Start 2P", cursive;
+      }
+      .sidebar div {
+        margin-bottom: 400px;
+      }
+      .sidebar a {
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+        margin-bottom: 5px;
+        transition: background-color 0.2s;
+        border-radius: 10px;
+      }
+
+      .sidebar a:hover {
+        background-color: darkblue;
+      }
+
+      .btn-deconnexion {
+        display: block;
+        padding: 10px;
+        background-color: red;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.2s;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-family: "Press Start 2P", cursive;
+      }
+
+      .btn-deconnexion:hover {
+        background-color: darkred;
+      }
+
+      .rectangles-container {
+        display: flex;
+        position: absolute;
+        left: 350px; /* same as the width of your sidebar */
+        top: 0;
+        padding: 10px;
+        flex-direction: column;
+      }
+
+      .row {
+        display: flex;
+        margin-bottom: 10px; /* spacing between rows */
+      }
+
+      .row:last-child {
+        margin-bottom: 0; /* remove margin from the last row */
+      }
+
+      .rectangle {
+        width: 400px; /* or whatever width you want */
+        height: 1000px; /* or whatever height you want */
+        background-color: rgb(229, 229, 229);
+        border-radius: 30px;
+        margin-left: 15px;
+        margin-top: 15px;
+        overflow-y: auto;
+      }
+      .row .rectangle:last-child {
+        margin-right: 0; /* remove margin from the last rectangle */
+      }
+
+      .rectangles-container .rectangle:last-child {
+        margin-right: 0; /* remove margin from the last rectangle */
+      }
+
+      .rectanglemessage {
+        width: 850px; /* or whatever width you want */
+        height: 1000px; /* or whatever height you want */
+        background-color: rgb(229, 229, 229);
+        border-radius: 30px;
+        margin-left: 30px;
+        margin-top: 15px;
+      }
+      .message {
+        padding: 30px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+        margin-left: 10px; /* Ajout de la marge à gauche */
+        margin-right: 10px; /* Ajout de la marge à droite */
+        cursor: pointer;
+        margin-top: 20px;
+        font-family: "Press Start 2P", cursive;
+        background-color: #ffffff;
+      }
+
+      .message:hover {
+        background-color: #f0f0f0;
+      }
+      .message-header,
+      .message-body,
+      .message-footer {
+        margin-bottom: 20px;
+        font-family: "Press Start 2P", cursive;
+        padding: 10px;
+      }
+      .message-header h2,
+      .message-header h3 {
+        margin: 0;
+        font-family: "Press Start 2P", cursive;
+      }
+      .reply-button {
+        background-color: blue;
+        color: white;
+        border: none;
+        padding: 30px 60px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        font-family: "Press Start 2P", cursive;
+      }
+      .reply-button:hover {
+        background-color: darkblue;
+        font-family: "Press Start 2P", cursive;
+      }
+
+      .active-tab {
+        background-color: rgb(207, 0, 45);
+        font-weight: bold;
+      }
+
+      .sender-box {
+        background-color: white;
+        padding: 40px;
+        border-radius: 20px;
+      }
+
+      .subject-box {
+        background-color: white;
+        padding: 40px;
+        border-radius: 20px;
+        margin-top: 10px; /* Ajoute un espace entre le rectangle du sujet et celui de l'expéditeur */
+      }
+
+      .text-box {
+        background-color: white;
+        padding: 150px;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div>
+        <img
+          src="images/nodal.png"
+          alt="Logo Nodal"
+          style="width: 100%; border-radius: 10px; margin-bottom: 150px"
+        />
+        <a href="statistiques.html" id="tab1" onclick="activateTab('tab1')"
+          >STATISTIQUES</a
+        >
+        <a href="spots.html" id="tab2" onclick="activateTab('tab2')">SPOTS</a>
+        <a href="signalements.html">SIGNALEMENTS</a>
+        <a href="sports.html">SPORTS</a>
+        <a href="centre-aide.html">CENTRE D'AIDE</a>
+        <a href="ajouterdesspots.html">AJOUTER DES SPOTS</a>
+        <a href="utilisateurs.html">UTILISATEURS</a>
+      </div>
+
+      <button
+        class="btn-deconnexion"
+        onclick="window.location.href='index.html'"
+      >
+        Déconnexion
+      </button>
+    </div>
+
+    <div class="rectangles-container">
+      <div class="row">
+        <div class="rectangle">
+          <div class="message" id="message1" onclick="displayMessage(1)">
+            Message 1
+          </div>
+          <div class="message" id="message2" onclick="displayMessage(2)">
+            Message 2
+          </div>
+        </div>
+        <div class="rectanglemessage"></div>
+      </div>
+    </div>
+
+    <div style="margin-left: 260px; padding: 10px">
+      <!-- Le reste du contenu de votre site va ici -->
+    </div>
+  </body>
+</html>
